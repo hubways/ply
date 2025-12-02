@@ -223,7 +223,12 @@ static int ksym_sort_cmp(const void *_a, const void *_b)
 {
 	const struct ksym *a = _a, *b = _b;
 
-	return a->addr - b->addr;
+	if (a->addr > b->addr)
+		return 1;
+	else if (a->addr < b->addr)
+		return -1;
+	else
+		return 0;
 }
 
 static int ksyms_cache_sort(struct ksyms *ks)
